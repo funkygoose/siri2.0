@@ -17,4 +17,4 @@ function Recorder({uploadAudio} : {uploadAudio: (blob:Blob) => void}) {
     )
 }
 
-export default Recorder
+export default Recorder;
