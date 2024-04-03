@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { SettingsIcon } from "lucide-react"
 import Messages from "@/components/Messages";
-import Recorder from "@/components/Recorder";
+import Recorder, { mimeType } from "@/components/Recorder";
 import { useRef } from "react";
 export default function Home() {
   const fileRef = useRef<HTMLInputElement | null >(null)
@@ -11,7 +11,7 @@ export default function Home() {
 
   const uploadAudio = (blob: Blob) => {
       const url = URL.createObjectURL(blob);
-      const file = new File([blob], 'audio.webm', { type: blob.type})
+      const file = new File([blob], 'audio.webm', { type: mimeType})
 
       //set the file as the value of the hidden file input field
       if (fileRef.current) {
@@ -47,13 +47,13 @@ export default function Home() {
 
       {/* Form */}
 
-      <form className="flex flex-col bg-black">
+      <form  className="flex flex-col bg-black">
         <div className="flex-1 bg-gradient-to-b from-purple-500 to-black">
           <Messages />
           </div>
 
           {/* Hidden Fields */}
-        <input type="file" hidden ref={fileRef}/>
+        <input type="file" name="audio" hidden ref={fileRef}/>
         <button type="submit" hidden ref={submitButtonRef} />
 
         <div className="fixed bottom-0 w-full overflow-hidden bg-black rounded-t-3xl">
